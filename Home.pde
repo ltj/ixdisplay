@@ -1,4 +1,4 @@
-class Practical implements DisplayState {
+class Home implements DisplayState {
 
   ParticleSystem system;
   int time, start;
@@ -6,7 +6,7 @@ class Practical implements DisplayState {
   boolean explode;
   PImage img, bgimg;
 
-  public Practical() {
+  public Home() {
     img = logo_img;
     bgimg = practical_img;
     system = new ParticleSystem(new PVector(grx_right/2-img.width/2, height/2-img.height/2), img, 20);
@@ -39,16 +39,7 @@ class Practical implements DisplayState {
       time = millis();
       interval = (int)random(10000, 30000);
     }
-
-//    fill(0);
-//    rect(grx_right, 0, width, height);
-//    fill(255);
-//    textFont(frutiger_l);
-//    textAlign(LEFT, TOP);
-//    text("Workshop\nopening hours", grx_right + 50, 50);
-//    text("Tuesday & Friday\n10:00 - 13:00", grx_right + 50, 290);
-//    text("IxD Lab", grx_right + 50, 600);
-//    text("itu.dk/ixdlab", grx_right + 50, 970);
   }
+  
 }
 
