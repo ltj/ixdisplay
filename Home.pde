@@ -27,7 +27,7 @@ class Home implements DisplayState {
     if (time + interval < millis()) {
       if (explode) {
         if(start + totaltime < millis()) {
-         STATE_CONTEXT.setState(new Rooms());
+         next(STATE_CONTEXT);
         } 
         system.explode();
         explode = false;
@@ -39,6 +39,11 @@ class Home implements DisplayState {
       time = millis();
       interval = (int)random(10000, 30000);
     }
+  }
+  
+  @Override
+  public void next(final StateContext STATE_CONTEXT) {
+    STATE_CONTEXT.setState(new Rooms());
   }
   
 }

@@ -1,5 +1,6 @@
 interface DisplayState {
   void run(final StateContext STATE_CONTEXT);
+  void next(final StateContext STATE_CONTEXT);
 }
 
 public class StateContext {
@@ -20,5 +21,9 @@ public class StateContext {
 
   public void run() {
     state.run(this);
+  }
+  
+  public void next() {
+    state.next(this);
   }
 }

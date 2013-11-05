@@ -5,7 +5,7 @@ import processing.video.*;
 final StateContext SC = new StateContext();
 static final float phi = 1.61803;
 static int grx_left, grx_right;
-PImage logo_img, rooms_img, practical_img;
+PImage logo_img, rooms_img, practical_img, label_img;
 Movie droom;
 
 void setup() {
@@ -14,8 +14,9 @@ void setup() {
   
   // load global fonts, images etc.
   logo_img = loadImage("logo.png");
-  rooms_img = loadImage("rooms-page.png");
+  rooms_img = loadImage("rooms-page-2.png");
   practical_img = loadImage("practical-page.png");
+  label_img = loadImage("label.png");
   droom = new Movie(this, "dressroom.mp4");
   grx_right = int(width / phi);
   grx_left = width - grx_right;
@@ -35,3 +36,10 @@ void draw() {
 void movieEvent(Movie m) {
   m.read();
 }
+
+void keyPressed() {
+  if(key == 'n') {
+    SC.next();
+  }
+}
+  

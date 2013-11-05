@@ -6,7 +6,7 @@ class Rooms implements DisplayState {
     new Point(1294, 577)
   };
   Point[] dbpos = {
-    new Point(1125, 647), new Point(1249, 433), new Point(1493, 433),
+    new Point(1125, 647), new Point(1249, 433), new Point(1493, 433), 
     new Point(1569, 565)
   };
   ArrayList<Ball> balls = new ArrayList<Ball>();
@@ -18,9 +18,8 @@ class Rooms implements DisplayState {
     interval = 1000;
     start = millis();
     time = millis();
-    
   }
-  
+
   private class Ball {
     int wpindex;
     Point[] waypoints;
@@ -28,7 +27,7 @@ class Rooms implements DisplayState {
     color c;
     float size;
     boolean isDead = false;
-    
+
     Ball(Point[] waypoints, color c, Point start) {
       wpindex = 0;
       this.waypoints = waypoints;
@@ -37,18 +36,18 @@ class Rooms implements DisplayState {
       this.c = c;
       size = random(5, 24);
     }
-    
+
     void display() {
       stroke(255);
       fill(c);
       ellipse(m.getX(), m.getY(), size, size);
     }
-    
+
     void update() {
-      if(wpindex < waypoints.length) {
+      if (wpindex < waypoints.length) {
         m.followTo(waypoints[wpindex].getX(), waypoints[wpindex].getY());
         m.move();
-        if(m.getDistanceTo(waypoints[wpindex].getX(), waypoints[wpindex].getY()) < 2) {
+        if (m.getDistanceTo(waypoints[wpindex].getX(), waypoints[wpindex].getY()) < 2) {
           m.setX(waypoints[wpindex].getX());
           m.setY(waypoints[wpindex].getY());
           wpindex++;
@@ -58,25 +57,24 @@ class Rooms implements DisplayState {
         isDead = true;
       }
     }
-    
+
     void run() {
       update();
       display();
     }
-    
   }
 
   @Override
     public void run(final StateContext STATE_CONTEXT) {
     image( rooms_img, 0, 0);
-    
+
     for (int i = balls.size()-1; i >= 0; i--) {
       Ball b = balls.get(i);
       b.run();
       if (b.isDead) balls.remove(i);
     }
-    
-    if(time + interval < millis()) {
+
+    if (time + interval < millis()) {
       balls.add(new Ball(lbpos, c_lab, new Point(343, 647)));
       balls.add(new Ball(dbpos, c_dirty, new Point(925, 647)));
       time = millis();
@@ -84,10 +82,13 @@ class Rooms implements DisplayState {
     }
 
     if (start + totaltime < millis()) {
-      STATE_CONTEXT.setState(new DressRoom());
+      next(STATE_CONTEXT);
     }
   }
 
-
+  @Override
+    public void next(final StateContext STATE_CONTEXT) {
+    STATE_CONTEXT.setState(new DressRoom());
+  }
 }
 
