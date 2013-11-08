@@ -14,7 +14,7 @@ class Rooms implements DisplayState {
   color c_dirty = color(0xCF, 0x28, 0xD5);
 
   public Rooms() {
-    totaltime = 60000;
+    totaltime = 120000;
     interval = 1000;
     start = millis();
     time = millis();

@@ -13,7 +13,7 @@ class Home implements DisplayState {
     time = millis();
     explode = true;
     interval = 10000;
-    totaltime = 60000;
+    totaltime = 180000;
     system.display();
     start = millis();
   }
